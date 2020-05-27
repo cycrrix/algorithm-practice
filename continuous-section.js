@@ -3,7 +3,7 @@ function summaryRanges(arr){
     var result = [];
     var leftIndex = 0;
     for (let index = 0; index < arr.length; index++) {
-        if (arr[index+1]-arr[index] > 1) {
+        if (index+1 === arr.length || arr[index+1]-arr[index] > 1) {
             var item = index-leftIndex > 0?`${arr[leftIndex]}->${arr[index]}`:`${arr[leftIndex]}`;
             result.push(item);
             leftIndex = index + 1;
@@ -12,7 +12,7 @@ function summaryRanges(arr){
     return result;
 }
 
-console.log(summaryRanges([0,1,2,4,5,7,13,15,16]));
+console.log(summaryRanges([0,1,2,4,5,7,13,15,16,20]));
 
 /*
 给定一个升序整型数组[0,1,2,4,5,7,13,15,16],找出其中连续出现的数字区间，输出为["0->2","4->5","7","13","15->16"]
