@@ -13,7 +13,7 @@ var reverseWords1 = function(s) {
 console.log(reverseWords1('www.toutiao.com.cn'))
 
 /**
- * 不使用字符串处理函数 2.空间复杂度尽可能小
+ * 1.不使用字符串处理函数 2.空间复杂度尽可能小
  * @param {string} s
  * @return {string}
  */
@@ -37,7 +37,8 @@ console.log(reverseWords2('www.toutiao.com.cn'))
 
 /**
  * 另一个示例适用于字符串数组，输入['w','w',...],1.不使用字符串处理函数 2.空间复杂度尽可能小
- * https://leetcode-cn.com/problems/reverse-words-in-a-string-iii/solution/ 题目下的官方解法第一条评论
+ * https://leetcode-cn.com/problems/reverse-words-in-a-string-iii/solution/fan-zhuan-zi-fu-chuan-zhong-de-dan-ci-iii-by-leetc/
+ * 官方解法第一条评论
  */
 /**
  * @param {List<string>} s
@@ -69,12 +70,3 @@ function reverse(words, start, end) {
 }
 
 console.log(reverseWords('www.toutiao.com.cn'))
-
-/**
- * @param {string} s
- * @return {string}
- */
-var reverseWords = function(s) {
-  let arr=s.split("").reverse().join("")
-  return arr.split(" ").reverse().join(" ")
-};
