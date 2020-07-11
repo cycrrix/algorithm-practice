@@ -66,5 +66,6 @@ console.log(
  * 进阶: 递归算法很简单，你可以通过迭代算法完成吗？
  * https://leetcode-cn.com/problems/binary-tree-postorder-traversal/
  * 我们可以用与前序遍历相似的方法完成后序遍历，后序遍历与前序遍历相对称。
- * 思路： 每到一个节点 A，就应该立即访问它。 然后将左子树压入栈，再次遍历右子树。遍历完整棵树后，结果序列逆序即可。
+ * 迭代思路： 每到一个节点 A，就应该立即访问它。 然后将左子树压入栈，再次遍历右子树。遍历完整棵树后，结果序列逆序即可。
+ * https://leetcode-cn.com/problems/binary-tree-inorder-traversal/solution/die-dai-fa-by-jason-2/
  */

@@ -64,4 +64,6 @@ console.log(
  * 输出: [1,3,2]
  * 进阶: 递归算法很简单，你可以通过迭代算法完成吗？
  * https://leetcode-cn.com/problems/binary-tree-inorder-traversal/
+ * 迭代算法思路
+ * https://leetcode-cn.com/problems/binary-tree-inorder-traversal/solution/die-dai-fa-by-jason-2/
  */
