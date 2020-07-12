@@ -9,7 +9,19 @@
  * @param {TreeNode} root
  * @return {boolean}
  */
-var isSymmetric = function (root) {};
+var isSymmetric = function (root) {
+  return root === null ? true: recur(root.left,root.right);
+};
+
+function recur(leftNode,rightNode) {
+  if (leftNode ===null && rightNode===null) {
+    return true;
+  }
+  if (leftNode ===null || rightNode ===null|| leftNode.val !== rightNode.val) {
+    return false;
+  }
+  return recur(leftNode.left,rightNode.right) && recur(leftNode.right,rightNode.left)
+}
 
 /**
  * 剑指 Offer 28. 对称的二叉树
