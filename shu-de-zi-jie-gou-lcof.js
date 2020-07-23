@@ -6,7 +6,6 @@
  * }
  */
 /**
- * 判断树B是树A的子结构
  * @param {TreeNode} A
  * @param {TreeNode} B
  * @return {boolean}
