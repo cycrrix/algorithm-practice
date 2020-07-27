@@ -5,52 +5,24 @@
  *     this.left = this.right = null;
  * }
  */
-
 /**
- * Encodes a tree to a single string.
- *
- * @param {TreeNode} root
- * @return {string}
+ * @param {TreeNode} A
+ * @param {TreeNode} B
+ * @return {boolean}
  */
-var serialize = function (root) {
-  const res = [];
-  buildString(root, res);
-  return res.join(",");
-  function buildString(root, res) {
-    if (root === null) {
-      res.push("X");
-      return;
-    }
-    res.push(root.val);
-    buildString(root.left,res);
-    buildString(root.right,res);
+var isSubStructure = function (A, B) {
+  if (A === null || B === null) {
+    return false;
   }
+  return recur(A, B) || isSubStructure(A.left, B) || isSubStructure(A.right, B);
 };
 
-/**
- * Decodes your encoded data to tree.
- *
- * @param {string} data
- * @return {TreeNode}
- */
-var deserialize = function (data) {
-  if (!data) {
-    return null;
+function recur(A, B) {
+  if (B === null) {
+    return true;
   }
-  return buildTree(data.split(","));
-  function buildTree(list) {
-    const curr = list.shift();
-    if (curr === "X") {
-      return null;
-    }
-    const node = new TreeNode(curr);
-    node.left = buildTree(list);
-    node.right = buildTree(list);
-    return node;
+  if (A === null || A.val !== B.val) {
+    return false;
   }
-};
-
-/**
- * Your functions will be called as such:
- * deserialize(serialize(root));
- */
+  return recur(A.left, B.left) && recur(A.right, B.right);
+}
