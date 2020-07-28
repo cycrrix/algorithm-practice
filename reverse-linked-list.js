@@ -10,14 +10,14 @@
  * @param {ListNode} head
  * @return {ListNode}
  */
-var reverseList = function(head) {
-  let pre =null;
+var reverseList = function (head) {
+  let pre = null;
   let curr = head;
-  let temp =null;
-  while(curr!==null){
+  let temp = null;
+  while (curr !== null) {
     temp = curr.next;
-    curr.next=pre;
-    pre= curr;
+    curr.next = pre;
+    pre = curr;
     curr = temp;
   }
   return pre;
@@ -28,9 +28,12 @@ var reverseList = function(head) {
  * @param {ListNode} curr
  * @return {ListNode}
  */
-var reverseList = function(curr) {
-  if (curr ===null|| curr.next===null) {
+var reverseList = function (curr) {
+  if (curr === null || curr.next === null) {
     return curr;
   }
-  const 
+  const tail = reverseList(curr.next);
+  curr.next.next = curr;
+  curr.next = null;
+  return tail;
 };
