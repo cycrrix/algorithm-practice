@@ -32,5 +32,5 @@ var reverseList = function(curr) {
   if (curr ===null|| curr.next===null) {
     return curr;
   }
-  const 
+  const tail = 
 };
