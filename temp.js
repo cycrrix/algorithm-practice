@@ -1,28 +1,31 @@
-/**
- * Definition for a binary tree node.
- * function TreeNode(val) {
- *     this.val = val;
- *     this.left = this.right = null;
- * }
- */
-/**
- * @param {TreeNode} A
- * @param {TreeNode} B
- * @return {boolean}
- */
-var isSubStructure = function (A, B) {
-  if (A === null || B === null) {
-    return false;
+var copyRandomList = function (head) {
+  if (head === null) {
+    return null
   }
-  return recur(A, B) || isSubStructure(A.left, B) || isSubStructure(A.right, B);
+  let curr = head;
+  while (curr!==null) {
+    const newNode = new Node(curr.val);
+    newNode.next=curr.next;
+    curr.next = newNode;
+    curr=newNode.next;
+  }
+  curr =head;
+  while (curr!==null) {
+    if (curr.random!==null) {
+      curr.next.random=curr.random.next;
+    }
+    curr=curr.next.next;
+  }
+  curr=head;
+  const copyHead = new Node(0);
+  let copyCurr=copyHead;
+  while (curr!==null) {
+    copyCurr.next = curr.next;
+    copyCurr = copyCurr.next;
+    
+    curr.next = curr.next.next;
+    
+    curr = curr.next;
+  }
+  return copyHead.next;
 };
-
-function recur(A, B) {
-  if (B === null) {
-    return true;
-  }
-  if (A === null || A.val !== B.val) {
-    return false;
-  }
-  return recur(A.left, B.left) && recur(A.right, B.right);
-}
