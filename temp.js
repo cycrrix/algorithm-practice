@@ -1,20 +1,12 @@
 /**
- * Definition for singly-linked list.
- * function ListNode(val) {
- *     this.val = val;
- *     this.next = null;
- * }
+ * @param {number} n
+ * @param {number} m
+ * @return {number}
  */
-/**
- * @param {ListNode} curr
- * @return {ListNode}
- */
-var reverseList = function(curr) {
-  if (curr===null||curr.next===null) {
-    return curr
+var lastRemaining = function (n, m) {
+  let pos = 0;
+  for (let i = 2; i <= n; i++) {
+    pos = (pos + m) % i;
   }
-  const tail = reverseList(curr.next);
-  curr.next.next = curr;
-  curr.next=null;
-  return tail;
+  return pos;
 };
