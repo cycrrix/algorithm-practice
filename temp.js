@@ -1,12 +1,24 @@
 /**
- * @param {number} n
- * @param {number} m
- * @return {number}
+ * @param {string} s
+ * @return {character}
  */
-var lastRemaining = function (n, m) {
-  let pos = 0;
-  for (let i = 2; i <= n; i++) {
-    pos = (pos + m) % i;
+var firstUniqChar = function (s) {
+  if (!s) {
+    return " ";
   }
-  return pos;
+  const countMap = {};
+  for (let index = 0; index < s.length; index++) {
+    const curr = s[index];
+    if (countMap[curr]) {
+      countMap[curr] += 1
+    } else {
+      countMap[curr] = 1
+    }
+  }
+  for (let index = 0; index < s.length; index++) {    
+    if (countMap[s[index]] ===1) {
+      return s[index]
+    }
+  }
+  return ' '
 };
