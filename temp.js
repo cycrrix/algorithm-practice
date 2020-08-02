@@ -1,24 +1,33 @@
 /**
- * @param {string} s
- * @return {character}
+ * @param {number[]} nums
+ * @return {number[]}
  */
-var firstUniqChar = function (s) {
-  if (!s) {
-    return " ";
-  }
-  const countMap = {};
-  for (let index = 0; index < s.length; index++) {
-    const curr = s[index];
-    if (countMap[curr]) {
-      countMap[curr] += 1
-    } else {
-      countMap[curr] = 1
+var exchange = function (nums) {
+  let left = 0,
+    right = nums.length - 1;
+  while (left < right) {
+    if ((nums[left] & 1) !== 0) {
+      left++;
+      continue;
     }
-  }
-  for (let index = 0; index < s.length; index++) {    
-    if (countMap[s[index]] ===1) {
-      return s[index]
+    if ((nums[right] & 1) !== 1) {
+      right--;
+      continue;
     }
+    [nums[left], nums[right]] = [nums[right], nums[left]];
   }
-  return ' '
+  return nums;
+};
+
+var exchange = function (nums) {
+  let low = 0,
+    fast = 0;
+  while (fast < nums.length) {
+    if (nums[fast] & 1) {
+      [nums[low], nums[fast]] = [nums[fast], nums[low]];
+      low++;
+    }
+    fast++;
+  }
+  return nums;
 };
