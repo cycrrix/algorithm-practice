@@ -6,7 +6,7 @@ var constructArr = function (a) {
   if (a.length === 0) {
     return [];
   }
-  const b = [];
+  let b = [];
   b[0] = 1;
   for (let i = 1; i < a.length; i++) {
     b[i] = b[i - 1] * a[i - 1];
