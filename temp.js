@@ -16,7 +16,6 @@ var firstUniqChar = function(s) {
     }
   }
   for (let index = 0; index < s.length; index++) {
-    const element = s[index];
     
   }
 };
