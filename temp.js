@@ -1,20 +1,23 @@
 /**
- * @param {number[]} a
+ * @param {number[]} nums
+ * @param {number} target
  * @return {number[]}
  */
-var constructArr = function (a) {
-  if (a.length === 0) {
+var twoSum = function (nums, target) {
+  if (nums.length === 0) {
     return [];
   }
-  const b = [];
-  b[0] = 1;
-  for (let i = 1; i < a.length; i++) {
-    b[i] = b[i - 1] * a[i - 1];
+  let left = 0;
+  let right = nums.length - 1;
+  while (left < right) {
+    let sum = nums[left] + nums[right];
+    if (sum < target) {
+      left++;
+    } else if (sum > target) {
+      right--;
+    } else {
+      return [nums[left], nums[right]];
+    }
   }
-  let temp = 1;
-  for (let i = a.length - 2; i >= 0; i--) {
-    temp *= a[i + 1];
-    b[i] *= temp;
-  }
-  return b;
+  return [];
 };
