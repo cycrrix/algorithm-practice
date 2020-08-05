@@ -1,11 +1,19 @@
 /**
  * @param {number[]} nums
- * @return {number}
+ * @param {number} target
+ * @return {number[]}
  */
-var maxSubArray = function(nums) {
-  let max = nums[0];
-  for (let i = 1; i < nums.length; i++) {
-    nums[i]+=Math.max(nums[i-1],0)
-    max = Math.max(nums[i],max)
+var twoSum = function(nums, target) {
+  if (nums.length===0) {
+    return []
   }
+  const map  =  new Map();
+  for (let i = 0; i < nums.length; i++) {
+    let complement  = target  - nums[i]
+    if (map.has(complement)) {
+      return [map.get(complement),i]
+    }
+    map.set(nums[i],i);
+  }
+  return []
 };
