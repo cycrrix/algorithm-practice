@@ -4,6 +4,9 @@
  * @return {number[]}
  */
 var twoSum = function (nums, target) {
+  if (nums.length === 0) {
+    return [];
+  }
   var map = new Map();
   for (var i = 0; i < nums.length; i++) {
     var complement = target - nums[i];
@@ -12,9 +15,10 @@ var twoSum = function (nums, target) {
     }
     map.set(nums[i], i);
   }
+  return [];
 };
 
-console.log(twoSum([2,7,7,15], 14))
+console.log(twoSum([2, 7, 7, 15], 14));
 
 /**
  * 1. 两数之和
