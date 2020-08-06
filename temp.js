@@ -9,14 +9,24 @@
  * @param {ListNode} head
  * @return {ListNode}
  */
-var reverseList = function(head) {
-  if (head===null) {
-    return null
+/**
+ * @param {number[]} nums
+ * @return {boolean}
+ */
+var isStraight = function (nums) {
+  const set = new Set();
+  let max = 0,
+    min = 14;
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] === 0) {
+      continue;
+    }
+    if (set.has(nums[i])) {
+      return false;
+    }
+    set.add(nums[i]);
+    max = Math.max(max, nums[i]);
+    min = Math.min(min, nums[i]);
   }
-  let pre = null;
-  let curr = head;
-  while(curr!==null){
-    let temp = curr.next;
-    curr.next = pre;
-  }
+  return max - min < 5;
 };
