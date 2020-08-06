@@ -1,19 +1,22 @@
 /**
- * @param {number[]} nums
- * @param {number} target
- * @return {number[]}
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
  */
-var twoSum = function(nums, target) {
-  if (nums.length===0) {
-    return []
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var reverseList = function(head) {
+  if (head===null) {
+    return null
   }
-  const map  =  new Map();
-  for (let i = 0; i < nums.length; i++) {
-    let complement  = target  - nums[i]
-    if (map.has(complement)) {
-      return [map.get(complement),i]
-    }
-    map.set(nums[i],i);
+  let pre = null;
+  let curr = head;
+  while(curr!==null){
+    let temp = curr.next;
+    curr.next = pre;
   }
-  return []
 };
