@@ -1,32 +1,27 @@
 /**
- * Definition for singly-linked list.
- * function ListNode(val) {
- *     this.val = val;
- *     this.next = null;
- * }
- */
-/**
- * @param {ListNode} head
- * @return {ListNode}
- */
-/**
  * @param {number[]} nums
- * @return {boolean}
+ * @return {number}
  */
-var isStraight = function (nums) {
-  const set = new Set();
-  let max = 0,
-    min = 14;
+var majorityElement = function (nums) {
+  let votes = 0,
+    x;
   for (let i = 0; i < nums.length; i++) {
-    if (nums[i] === 0) {
-      continue;
+    if (votes === 0) {
+      x = nums[i];
     }
-    if (set.has(nums[i])) {
-      return false;
-    }
-    set.add(nums[i]);
-    max = Math.max(max, nums[i]);
-    min = Math.min(min, nums[i]);
+    votes += nums[i] === x ? +1 : -1;
   }
-  return max - min < 5;
+  return x;
 };
+
+/**
+ * 剑指 Offer 39. 数组中出现次数超过一半的数字
+ * 数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。
+ * 你可以假设数组是非空的，并且给定的数组总是存在多数元素。
+ * 
+ * 示例 1:
+ * 输入: [1, 2, 3, 2, 2, 2, 5, 4, 2]
+ * 输出: 2
+ * 题解：
+ * https://leetcode-cn.com/problems/shu-zu-zhong-chu-xian-ci-shu-chao-guo-yi-ban-de-shu-zi-lcof/solution/mian-shi-ti-39-shu-zu-zhong-chu-xian-ci-shu-chao-3/
+ */
