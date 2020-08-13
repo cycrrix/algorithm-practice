@@ -38,7 +38,7 @@ function mergeAndCount(nums, left, mid, right, temp) {
     } else if (j === right + 1) {
       nums[k] = temp[i];
       i++;
-    } else if (nums[i] <= nums[j]) {
+    } else if (temp[i] <= temp[j]) {
       nums[k] = temp[i];
       i++;
     } else {

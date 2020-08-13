@@ -63,4 +63,20 @@ function mergeAndCount(nums, left, mid, right, temp) {
   }
   return count;
 }
-reversePairs([7,5,6,4]);
+
+/**
+ * 剑指 Offer 51. 数组中的逆序对
+ * 在数组中的两个数字，如果前面一个数字大于后面的数字，则这两个数字组成一个逆序对。输入一个数组，求出这个数组中的逆序对的总数。
+ * 
+ * 示例 1:
+ * 输入: [7,5,6,4]
+ * 输出: 5
+ * 题解：
+ * 注意，视频题解和代码的写法都是：在第 2 个子区间元素归并回去的时候，计算逆序对的个数
+ * 但是在讲解思路时，写法是：在第 1 个子区间元素归并回去的时候，计算逆序对的个数
+ * 推荐看视频题解，采用：在第 2 个子区间元素归并回去的时候，计算逆序对的个数
+ * https://leetcode-cn.com/problems/shu-zu-zhong-de-ni-xu-dui-lcof/solution/shu-zu-zhong-de-ni-xu-dui-by-leetcode-solution/
+ * 
+ * 归并排序的两种写法在第二个题解有说明，不用细看，知道就行
+ * https://leetcode-cn.com/problems/shu-zu-zhong-de-ni-xu-dui-lcof/solution/bao-li-jie-fa-fen-zhi-si-xiang-shu-zhuang-shu-zu-b/
+ */
