@@ -6,12 +6,12 @@
 var fourSum = function (nums, target) {
   /*定义一个返回值*/
   const result = [];
-  /*当数组为null或元素小于4个时，直接返回*/
-  if (nums == null || nums.length < 4) {
+  /*当数组元素小于4个时，直接返回*/
+  if (nums.length < 4) {
     return result;
   }
   /*对数组进行从小到大排序*/
-  result.sort((a, b) => a - b);
+  nums.sort((a, b) => a - b);
   /*数组长度*/
   const length = nums.length;
   /*定义4个指针k，i，j，h  k从0开始遍历，i从k+1开始遍历，留下j和h，j指向i+1，h指向数组最大值*/
