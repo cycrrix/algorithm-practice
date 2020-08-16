@@ -1,76 +1,46 @@
-/**
- * @param {number[]} nums
- * @param {number} target
- * @return {number[][]}
- */
-var fourSum = function (nums, target) {
-  /*定义一个返回值*/
-  const result = [];
-  /*当数组为null或元素小于4个时，直接返回*/
-  if (nums == null || nums.length < 4) {
-    return result;
-  }
-  /*对数组进行从小到大排序*/
-  result.sort((a, b) => a - b);
-  /*数组长度*/
-  const length = nums.length;
-  /*定义4个指针k，i，j，h  k从0开始遍历，i从k+1开始遍历，留下j和h，j指向i+1，h指向数组最大值*/
-  for (let k = 0; k < length - 3; k++) {
-    /*当k的值与前面的值相等时忽略*/
-    if (k > 0 && nums[k] === nums[k - 1]) {
-      continue;
-    }
-    /*获取当前最小值，如果最小值比目标值大，说明后面越来越大的值根本没戏*/
-    let min1 = nums[k] + nums[k + 1] + nums[k + 2] + nums[k + 3];
-    if (min1 > target) {
-      break;
-    }
-    /*获取当前最大值，如果最大值比目标值小，说明后面越来越小的值根本没戏，忽略*/
-    let max1 = nums[k] + nums[length - 1] + nums[length - 2] + nums[length - 3];
-    if (max1 < target) {
-      continue;
-    }
-    /*第二层循环i，初始值指向k+1*/
-    for (let i = k + 1; i < length - 2; i++) {
-      /*当i的值与前面的值相等时忽略*/
-      if (i > k + 1 && nums[i] === nums[i - 1]) {
-        continue;
+//利用两次二分法分别确定target的左右边界（左右边界为target值序列的左/右一位，因此最终结果是right-left-1）
+class Solution {
+  public int search(int[] nums, int target) {
+      if(nums.length == 0) {
+          return 0;
       }
-      /*定义指针j指向i+1*/
-      let j = i + 1;
-      /*定义指针h指向数组末尾*/
-      let h = length - 1;
-      /*获取当前最小值，如果最小值比目标值大，说明后面越来越大的值根本没戏，忽略*/
-      let min = nums[k] + nums[i] + nums[j] + nums[j + 1];
-      if (min > target) {
-        continue;
-      }
-      /*获取当前最大值，如果最大值比目标值小，说明后面越来越小的值根本没戏，忽略*/
-      let max = nums[k] + nums[i] + nums[h] + nums[h - 1];
-      if (max < target) {
-        continue;
-      }
-      /*开始j指针和h指针的表演，计算当前和，如果等于目标值，j++并去重，h--并去重，当当前和大于目标值时h--，当当前和小于目标值时j++*/
-      while (j < h) {
-        let curr = nums[k] + nums[i] + nums[j] + nums[h];
-        if (curr === target) {
-          result.push([nums[k], nums[i], nums[j], nums[h]]);
-          j++;
-          while (j < h && nums[j] === nums[j - 1]) {
-            j++;
+      //初始左右指针位置
+      int i = 0;
+      int j = nums.length-1;
+      //第一次二分：找right边界
+      //这边是“小于等于”，因此当循环结束后，ij不重合，且如果存在target值的话，i的位置就是右边界（target值序列右边第一个大于target值的位置），因为最后一次循环一定是i=mid+1；且此时j指向target
+      while(i <= j) {
+          int mid = (i+j) >> 1;
+          //这里是“小于等于”，目的是为了确定右边界，就是说当mid等于target时，因为不确定后面还有没有target，在闭区间[m+1,j]中找右边界right 
+          if(nums[mid] <= target){
+              i = mid+1;
           }
-          h--;
-          while (j < h && i < h && nums[h] === nums[h + 1]) {
-            h--;
+          else{
+              j = mid-1;
           }
-        } else if (curr > target) {
-          h--;
-        } else {
-          j++;
-        }
       }
-    }
+      //在更新right边界值之前，需要判断这个数组中是否存在target，如果不存在（看j指向的位置是不是target，为什么看的是j指针？详见上面的注释）
+      if(j>=0&&nums[j] != target){
+          return 0;
+      }
+      int right = i;    //更新right边界
+      //重置指针
+      i = 0;
+      j = nums.length-1;
+      //第二次二分：找left边界
+      //结束之后，j指向target序列左边第一个小于它的位置，i指向target（经过上面判断，target一定存在）
+      while(i <= j) {
+          int mid = (i+j) >> 1;
+          //这里是“大于等于”，目的是为了确定左边界，就是说当mid等于target时，因为不确定左边还有没有target，在闭区间[i,m-1]中找左边界left 
+          if(nums[mid] >= target){
+              j = mid-1;
+          }
+          else{
+              i= mid+1;
+          }
+      }
+      //更新左指针
+      int left = j;
+      return right-left-1;
   }
-  return result;
-};
-console.log(fourSum([1,0,-1,0,-2,2],0))
+}
