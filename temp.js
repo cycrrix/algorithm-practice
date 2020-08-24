@@ -1,35 +1,48 @@
-const defaultCmp = (x, y) => x < y;
-const swap = (array, i, j) => {
-  [array[i], array[j]] = [array[j], array[i]];
-};
+const defaultCmp = (x, y) => x < y; // 默认是小顶堆
+
+const swap = (arr, i, j) => ([arr[i], arr[j]] = [arr[j], arr[i]]);
+
 class Heap {
+  /**
+   * 默认是小顶堆
+   * @param {Function} cmp
+   */
   constructor(cmp = defaultCmp) {
     this.container = [];
     this.cmp = cmp;
   }
-  insert(num) {
+
+  // 插入
+  insert(data) {
     const { container, cmp } = this;
-    container.push(num);
+
+    container.push(data);
     let index = container.length - 1;
     while (index) {
-      let parentIndex = Math.floor((index - 1) / 2);
-      if (!cmp(container[index], container[parentIndex])) {
-        break;
+      let parent = Math.floor((index - 1) / 2);
+      if (!cmp(container[index], container[parent])) {
+        return;
       }
-      cmp(container, index, parentIndex);
-      index = parentIndex;
+      swap(container, index, parent);
+      index = parent;
     }
   }
+
+  // 删除
   delete() {
     const { container, cmp } = this;
-    if (container.length === 0) {
+    if (!container.length) {
       return null;
     }
+
     swap(container, 0, container.length - 1);
-    const result = container.pop();
+    const res = container.pop();
+    const length = container.length;
     let index = 0,
       exchange = index * 2 + 1;
+
     while (exchange < length) {
+      // // 以最大堆的情况来说：如果有右节点，并且右节点的值大于左节点的值
       let right = index * 2 + 2;
       if (right < length && cmp(container[right], container[exchange])) {
         exchange = right;
@@ -37,49 +50,26 @@ class Heap {
       if (!cmp(container[exchange], container[index])) {
         break;
       }
-      swap(container, index, exchange);
+      swap(container, exchange, index);
       index = exchange;
+      exchange = index * 2 + 1;
     }
-    return result;
+
+    return res;
   }
 }
-
-/**
- * initialize your data structure here.
- */
-var MedianFinder = function () {
-  this.A = new Heap();
-  this.B = new Heap((x, y) => x - y);
-};
-
-/**
- * @param {number} num
- * @return {void}
- */
-MedianFinder.prototype.addNum = function (num) {
-  const { A, B } = this;
-  if (A.container.length !== B.container.length) {
-    A.insert(num);
-    B.insert(A.delete());
-  } else {
-    B.insert(num);
-    A.insert(B.delete());
+var getLeastNumbers = function (arr, k) {
+  if (k === 0 || arr.length === 0) {
+    return [];
   }
+  const maxHeap = new Heap((a, b) => a > b);
+  for (let i = 0; i < arr.length; i++) {
+    if (maxHeap.container.length < k || arr[i] < maxHeap.container[0]) {
+      maxHeap.insert(arr[i]);
+    }
+    if (maxHeap.container.length > k) {
+      maxHeap.delete();
+    }
+  }
+  return maxHeap.container;
 };
-
-/**
- * @return {number}
- */
-MedianFinder.prototype.findMedian = function () {
-  const { A, B } = this;
-  return A.container.length !== B.container.length
-    ? A.container[0]
-    : (A.container[0] + B.container[0]) / 2;
-};
-
-/**
- * Your MedianFinder object will be instantiated and called as such:
- * var obj = new MedianFinder()
- * obj.addNum(num)
- * var param_2 = obj.findMedian()
- */

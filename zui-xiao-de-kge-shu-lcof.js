@@ -4,7 +4,7 @@ const swap = (arr, i, j) => ([arr[i], arr[j]] = [arr[j], arr[i]]);
 
 class Heap {
   /**
-   * 默认是最大堆
+   * 默认是小顶堆
    * @param {Function} cmp
    */
   constructor(cmp = defaultCmp) {
@@ -66,7 +66,7 @@ class Heap {
  * @return {number[]}
  */
 var getLeastNumbers = function (arr, k) {
-  if (k === 0) {
+  if (k === 0 || arr.length === 0) {
     return [];
   }
   // 使用一个最大堆（大顶堆）
@@ -90,4 +90,45 @@ var getLeastNumbers = function (arr, k) {
  * @param {number} k
  * @return {number[]}
  */
-var getLeastNumbers = function (arr, k) {};
+var getLeastNumbers = function (arr, k) {
+  if (k === 0 || arr.length === 0) {
+    return [];
+  }
+  // 最后一个参数表示我们要找的是下标为k-1的数
+  quickSearch(arr, 0, arr.length - 1, k - 1);
+  // 返回最小的k个数
+  return arr.splice(0, k);
+};
+
+function quickSearch(nums, lo, hi, k) {
+  // 每快排切分1次，找到排序后下标为j的元素，如果j恰好等于k,那么j以及j左边所有的数就是最小的k个数；
+  let j = partition(nums, lo, hi);
+  if (j === k) {
+    return;
+  }
+  // 否则根据下标j与k的大小关系来决定继续切分左段还是右段。
+  if (j > k) {
+    quickSearch(nums, lo, j - 1, k);
+  } else {
+    quickSearch(nums, j + 1, hi, k);
+  }
+}
+
+// 快排切分，返回下标j，使得比nums[j]小的数都在j的左边，比nums[j]大的数都在j的右边。
+// 采用的是 指针交换法
+function partition(nums, lo, hi) {
+  let v = nums[lo];
+  let i = lo,
+    j = hi + 1;
+  while (true) {
+    while (++i <= hi && nums[i] < v);
+    while (--j >= lo && nums[j] > v);
+    if (i >= j) {
+      break;
+    }
+    swap(nums, i, j);
+  }
+  swap(nums, lo, j);
+  return j;
+}
+console.log(getLeastNumbers([3, 2, 9, 1, 7], 2));
