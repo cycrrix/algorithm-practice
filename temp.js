@@ -1,24 +1,17 @@
 /**
- * @param {number[]} nums
- * @param {number} k
- * @return {number[]}
+ * @param {number[]} pushed
+ * @param {number[]} popped
+ * @return {boolean}
  */
-var maxSlidingWindow = function (nums, k) {
-  if (nums.length === 0 || k === 0) {
-    return [];
+var validateStackSequences = function (pushed, popped) {
+  const stack = [];
+  let i = 0;
+  for (const num of pushed) {
+    stack.push(num);
+    while (stack.length !== 0 && stack[stack.length - 1] === popped[i]) {
+      stack.pop();
+      i++;
+    }
   }
-  const deque = [];
-  const res = [];
-  for (let i = 0; i < k; i++) {
-    while (deque.length && deque[deque.length - 1] < nums[i]) deque.pop();
-    deque.push(nums[i]);
-  }
-  res[0] = deque[0];
-  for (let i = k; i < nums.length; i++) {
-    if (deque[0] === nums[i - k]) deque.shift();
-    while (deque.length && deque[deque.length - 1] < nums[i]) deque.pop();
-    deque.push(nums[i]);
-    res[i - k + 1] = deque[0];
-  }
-  return res;
+  return stack.length === 0;
 };
