@@ -27,4 +27,4 @@ var isNumber = function (s) {
   }
   return p == 2 || p == 3 || p == 7 || p == 8;
 };
-console.log(isNumber("5.2e-3"));
+console.log(isNumber(" -2."));
