@@ -41,4 +41,6 @@ var mirrorTree = function (root) {
  * 输出：[4,7,2,9,6,3,1]
  * 解法思路：
  * http://www.conardli.top/docs/dataStructure/%E4%BA%8C%E5%8F%89%E6%A0%91/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%95%9C%E5%83%8F.html#%E9%A2%98%E7%9B%AE
+ * LeetCode链接：
+ * https://leetcode-cn.com/problems/er-cha-shu-de-jing-xiang-lcof/
  */

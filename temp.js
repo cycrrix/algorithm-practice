@@ -1,25 +1,23 @@
-const arr = [
-  1,
-  2,
-  3,
-  4,
-  [1, 2, 3, [1, 2, 3, [1, 2, 3]]],
-  5,
-  "string",
-  { name: "弹铁蛋同学" },
-];
-// concat + 递归
-function flat(arr) {
-  let arrResult = [];
-  arr.forEach((item) => {
-    if (Array.isArray(item)) {
-      arrResult = arrResult.concat(flat(item)); // 递归
-      // 或者用扩展运算符
-      // arrResult.push(...arguments.callee(item));
-    } else {
-      arrResult.push(item);
+var kthSmallest = function (root, k) {
+  var result = 0;
+  var count = 0;
+  recur(root);
+  return result;
+  function recur(root) {
+    if (root !== null) {
+      if (root.left !== null) {
+        recur(root.left);
+      }
+      count++;
+      if (count === k) {
+        ans = node.val;
+      } else if (count > k) {
+        return; //剪枝
+      }
+      result.push(root.val);
+      if (root.right !== null) {
+        recur(root.right);
+      }
     }
-  });
-  return arrResult;
-}
-console.log(flat(arr));
+  }
+};

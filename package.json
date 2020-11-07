@@ -1,0 +1,22 @@
+{
+  "name": "algorithm-practice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "3sum.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gscaiyucheng/algorithm-practice.git"
+  },
+  "author": "caiyucheng",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gscaiyucheng/algorithm-practice/issues"
+  },
+  "homepage": "https://github.com/gscaiyucheng/algorithm-practice#readme",
+  "dependencies": {
+    "eslint": "^7.12.1"
+  }
+}
