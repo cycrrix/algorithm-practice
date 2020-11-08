@@ -15,15 +15,10 @@ var preorderTraversal = function (root) {
   recursion(root, result);
   return result;
   function recursion(root, result) {
-    if (root !== null) {
-      result.push(root.val);
-      if (root.left !== null) {
-        recursion(root.left, result);
-      }
-      if (root.right !== null) {
-        recursion(root.right, result);
-      }
-    }
+    if (root === null) return;
+    result.push(root.val);
+    recursion(root.left, result);
+    recursion(root.right, result);
   }
 };
 

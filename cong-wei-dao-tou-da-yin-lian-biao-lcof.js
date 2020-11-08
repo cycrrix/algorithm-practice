@@ -29,11 +29,11 @@ var reversePrint = function (head) {
  * @return {number[]}
  */
 var reversePrint = function (head) {
-  const res=[]
-  let curr=head;
-  while(curr!==null){
+  const res = [];
+  let curr = head;
+  while (curr !== null) {
     res.unshift(curr.val);
-    curr=curr.next;
+    curr = curr.next;
   }
   return res;
 };
@@ -44,7 +44,7 @@ var reversePrint = function (head) {
  * 示例 1：
  * 输入：head = [1,3,2]
  * 输出：[2,3,1]
- * 
+ *
  * 题解：注意该解法为java，递归完了需要新建数组（java数组在初始化时需要指定大小），但是js不需要。
  * https://leetcode-cn.com/problems/cong-wei-dao-tou-da-yin-lian-biao-lcof/solution/mian-shi-ti-06-cong-wei-dao-tou-da-yin-lian-biao-d/
  */

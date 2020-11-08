@@ -36,16 +36,14 @@ var serialize = function (root) {
  * @return {TreeNode}
  */
 var deserialize = function (data) {
-  if (!data) {
-    return null;
-  }
   return buildTree(data.split(","));
+
   function buildTree(list) {
-    const curr = list.shift();
+    var curr = list.shift();
     if (curr === "X") {
       return null;
     }
-    const node = new TreeNode(curr);
+    var node = new TreeNode(curr);
     node.left = buildTree(list);
     node.right = buildTree(list);
     return node;

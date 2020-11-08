@@ -11,11 +11,11 @@
  * @return {Node}
  */
 var treeToDoublyList = function (root) {
-  let pre = null;
-  let head = null;
   if (root === null) {
     return null;
   }
+  let pre = null;
+  let head = null;
   recur(root);
   head.left = pre;
   pre.right = head;

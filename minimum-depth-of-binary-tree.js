@@ -38,6 +38,8 @@ var minDepth = function (root) {
  *    15   7
  * 返回它的最小深度  2.
  *
- * 思路
- * https://leetcode-cn.com/problems/er-cha-shu-de-shen-du-lcof/solution/mian-shi-ti-55-i-er-cha-shu-de-shen-du-xian-xu-bia/
+ * 思路：
+ * http://www.conardli.top/docs/dataStructure/%E4%BA%8C%E5%8F%89%E6%A0%91/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%B0%8F%E6%B7%B1%E5%BA%A6.html
+ * LeetCode：
+ * https://leetcode-cn.com/problems/minimum-depth-of-binary-tree/
  */

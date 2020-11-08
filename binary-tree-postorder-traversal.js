@@ -15,15 +15,10 @@ var postorderTraversal = function (root) {
   recursion(root, result);
   return result;
   function recursion(root, result) {
-    if (root !== null) {
-      if (root.left !== null) {
-        recursion(root.left, result);
-      }
-      if (root.right !== null) {
-        recursion(root.right, result);
-      }
-      result.push(root.val);
-    }
+    if (root === null) return;
+    recursion(root.left, result);
+    recursion(root.right, result);
+    result.push(root.val);
   }
 };
 
