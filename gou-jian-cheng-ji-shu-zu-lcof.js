@@ -18,3 +18,9 @@ var constructArr = function (a) {
   }
   return b;
 };
+
+/**
+ * 剑指 Offer 66. 构建乘积数组
+ * 题解：
+ * https://leetcode-cn.com/problems/gou-jian-cheng-ji-shu-zu-lcof/solution/mian-shi-ti-66-gou-jian-cheng-ji-shu-zu-biao-ge-fe/
+ */

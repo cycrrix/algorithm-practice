@@ -2,17 +2,17 @@
  * @param {number[]} nums
  * @return {string}
  */
-var minNumber = function(nums) {
-  if (!nums || nums.length ===0) {
-    return ""
+var minNumber = function (nums) {
+  if (!nums || nums.length === 0) {
+    return "";
   }
-  return nums.sort(compareFunction).join('');
+  return nums.sort(compareFunction).join("");
 };
 
-function compareFunction(a,b) {
-  const front = ''+a+b;
-  const behind = ''+b+a;
-  return front-behind;
+function compareFunction(a, b) {
+  const front = "" + a + b;
+  const behind = "" + b + a;
+  return front - behind;
 }
 
 /**
@@ -21,11 +21,11 @@ function compareFunction(a,b) {
  * 示例 1:
  * 输入: [10,2]
  * 输出: "102"
- * 
+ *
  * 示例 2:
  * 输入: [3,30,34,5,9]
  * 输出: "3033459"
- * 
+ *
  * 题解思路
  * https://leetcode-cn.com/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof/solution/mian-shi-ti-45-ba-shu-zu-pai-cheng-zui-xiao-de-s-4/
  * 代码：
