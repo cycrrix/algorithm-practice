@@ -7,7 +7,7 @@
  * }
  */
 /**
- * 递归
+ * 递归，效率低
  * @param {TreeNode} root
  * @param {number} k
  * @return {number}
@@ -15,15 +15,45 @@
 var kthSmallest = function (root, k) {
   const result = [];
   recur(root, result);
-  return result[k-1];
+  return result[k - 1];
   function recur(root, result) {
     if (root !== null) {
-      if (root.left !==null) {
-        recur(root.left,result);
+      if (root.left !== null) {
+        recur(root.left, result);
       }
       result.push(root.val);
       if (root.right !== null) {
-        recur(root.right,result);
+        recur(root.right, result);
+      }
+    }
+  }
+};
+
+/**
+ * 递归优化：剪枝
+ * @param {TreeNode} root
+ * @param {number} k
+ * @return {number}
+ */
+var kthSmallest = function (root, k) {
+  var count = 0;
+  var result = 0;
+  recur(root);
+  return result;
+  function recur(root) {
+    if (root !== null) {
+      if (root.left !== null) {
+        recur(root.left);
+      }
+      count++;
+      if (count === k) {
+        result = root.val;
+        return; // 剪枝
+      } else if (count > k) {
+        return; // 剪枝
+      }
+      if (root.right !== null) {
+        recur(root.right);
       }
     }
   }
@@ -36,15 +66,15 @@ var kthSmallest = function (root, k) {
  * @return {number}
  */
 var kthSmallest = function (root, k) {
-  const stack =[];
+  const stack = [];
   let curr = root;
-  while(curr|| stack.length>0){
-    while(curr){
-      stack.push(curr)
-      curr= curr.left;
+  while (curr || stack.length > 0) {
+    while (curr) {
+      stack.push(curr);
+      curr = curr.left;
     }
-    curr= stack.pop();
-    if (--k ===0) {
+    curr = stack.pop();
+    if (--k === 0) {
       return curr.val;
     }
     curr = curr.right;
@@ -65,7 +95,7 @@ var kthSmallest = function (root, k) {
  *   \
  *    2
  * 输出: 1
- * 
+ *
  * 示例 2:
  * 输入: root = [5,3,6,2,4,null,null,1], k = 3
  *        5
