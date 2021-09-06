@@ -1,13 +1,13 @@
 function throttle(func, delay) {
-  let run = true;
+  let canRun = true;
   return function () {
-    if (!run) {
+    if (!canRun) {
       return;
     }
-    run = false;
+    canRun = false;
     setTimeout(() => {
       func.apply(this, arguments);
-      run = true;
+      canRun = true;
     }, delay);
   };
 }

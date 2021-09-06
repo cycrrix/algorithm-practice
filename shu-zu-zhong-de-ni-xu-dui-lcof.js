@@ -44,6 +44,8 @@ function mergeAndCount(nums, left, mid, right, temp) {
   let i = left;//左边的有序数组的左边界
   let j = mid + 1;//右边的有序数组的左边界
   let count = 0;
+  // 此处循环逻辑不太清晰，后续参考另一篇文章：
+  // https://mp.weixin.qq.com/s?__biz=MzIxMjE5MTE1Nw==&mid=2653200029&idx=1&sn=51ecebafb9ff77baf3de71bdc4f67b78&chksm=8c99ec47bbee6551b0377b97e26670c4895d0c934051e4aa927e62bf9b64996b6e1f7459edfe&scene=21#wechat_redirect
   for (let k = left; k <= right; k++) {
     if (i === mid + 1) {
       nums[k] = temp[j]; //此时左边的子数组长度为0

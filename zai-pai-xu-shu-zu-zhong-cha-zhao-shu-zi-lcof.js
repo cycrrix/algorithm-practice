@@ -23,7 +23,7 @@ var search = function (nums, target) {
     }
   }
   //查找完右边界 right=i 后，则 nums[j] 指向最右边的 target （若存在）
-  //在更新right边界值之前，需要判断这个数组中是否存在target，如果不存在（看j指向的位置是不是target）
+  //在更新right边界值之前，需要判断这个数组中是否存在target（看j指向的位置是不是target），如果不存在
   if (j >= 0 && nums[j] !== target) {
     return 0;
   }
